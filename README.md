@@ -50,10 +50,9 @@ Admin dashboard for managing products
 
 📧 Email: miinabbe@gmail.com
 
-🌐 Live Demo: [Add your deployed link here]
-📍 Location: Market Street, Your City
+🌐 Live Demo: https://hami-market-two.vercel.app/
+📍 Location: Market Street, Mogadishu
 
 🏆 Author
 
 Developed with ❤️ by Ina Qasim
-👉 GitHub Profile
