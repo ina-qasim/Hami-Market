@@ -36,22 +36,47 @@
       <button type="submit"><i class="fas fa-search"></i></button>
     </div>
 
-   <!-- CART ICON -->
-<div class="cart-container">
-  <i class="fas fa-shopping-cart"></i>
-  <span id="cartCount">0</span>
-  <div class="cart-dropdown" id="cartDropdown">
-    <p>Your cart is empty</p>
-  </div>
-</div>
-
+    <!-- CART ICON -->
+    <div class="cart-container">
+      <i class="fas fa-shopping-cart"></i>
+      <span id="cartCount">0</span>
+      <div class="cart-dropdown" id="cartDropdown">
+        <p>Your cart is empty</p>
+        <!-- View Order button -->
+        <button id="viewOrderBtn" style="margin-top:10px; width:100%; padding:5px; cursor:pointer;">View Order</button>
+        <button id="confirmOrder" class="confirm-button" style="margin-top:10px; width:100%; padding:5px; cursor:pointer;"">
+    Confirm Order
+</button>
+      </div>
+    </div>
 
     <!-- HAMBURGER ICON -->
     <div class="menu">
       <i class="fas fa-bars"></i>
     </div>
   </div>
-</header> 
+</header>
+
+<!-- ORDER PAGE SECTION -->
+<section id="orderSection">
+  
+  <div id="orderPage" style="display:none; padding:20px; max-width:800px; margin:0 auto;">
+    <h2>Your Order</h2>
+    <div id="orderList" style="margin-top:15px; border-top:1px solid #ccc; padding-top:10px;"></div>
+
+    <div style="margin-top:15px;">
+      <p>Total Items: <span id="totalItems">0</span></p>
+      <p>Total Price: $<span id="totalPrice">0</span></p>
+    </div>
+
+    <button id="backToIndex" style="margin-top:20px; padding:8px 15px; cursor:pointer; background:#4CAF50; color:white; border:none; border-radius:5px;">
+      Back
+    </button>
+  </div>
+</section>
+
+
+
 <div class="side-menu">
     <div class="side-header">
       <h2>Menu</h2>
@@ -70,6 +95,8 @@
       <button><i class="fas fa-search"></i></button>
     </div>
   </div>
+
+  
     
 
 

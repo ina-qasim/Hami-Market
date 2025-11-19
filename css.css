@@ -1304,6 +1304,117 @@ btn.secondary-btn.add-to-cart {
 }
 
 
+/* ===== SIDE MENU ===== */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -65%;
+  width: 65%;
+  height: 100%;
+  background: linear-gradient(135deg, #2a9d8f, #1c6b61);
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s ease;
+  padding: 20px;
+  z-index: 2000;
+}
+
+.side-menu.open {
+  left: 0;
+}
+
+.side-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.side-header h2 {
+  font-size: 22px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.side-menu .close-btn {
+  color: white;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.side-menu ul {
+  list-style: none;
+  margin-top: 25px;
+  padding: 0;
+}
+
+.side-menu ul li {
+  margin: 15px 0;
+}
+
+.side-menu ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  display: block;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.side-menu ul li a:hover {
+  color: #e9c46a;
+  padding-left: 10px;
+}
+
+/* MOBILE SEARCH BAR inside side menu */
+.mobile-search {
+  margin-top: 20px;
+  background: white;
+  border-radius: 30px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-search input {
+  border: none;
+  outline: none;
+  padding: 8px 10px;
+  flex: 1;
+  font-size: 14px;
+  border-radius: 25px;
+}
+
+.mobile-search button {
+  border: none;
+  background-color: #264653;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.mobile-search button:hover {
+  background-color: #1d3557;
+}
+
+/* RESPONSIVE: hide main nav and show hamburger */
+@media (max-width: 900px) {
+  .main-nav {
+    display: none;
+  }
+
+  .desktop-search {
+    display: none;
+  }
+
+  .menu {
+
+
+    display: block;
+  }
+}
 
 
 
@@ -1321,4 +1432,296 @@ btn.secondary-btn.add-to-cart {
 
 .side-menu.open {
   left: 0;
-} */
+} 
+
+
+
+
+
+<section id="orderSection">
+  <div id="orderPage" class="order-page">
+    <div class="order-container">
+      <div class="order-header">
+        <h2 class="order-title">Your Order Summary</h2>
+        <div class="order-subtitle">Review your items before proceeding</div>
+      </div>
+
+      <div id="orderList" class="order-items-list">
+        <!-- Order items will be dynamically inserted here -->
+      </div>
+
+      <div class="order-summary">
+        <div class="summary-row">
+          <span class="summary-label">Total Items:</span>
+          <span id="totalItems" class="summary-value">0</span>
+        </div>
+        <div class="summary-row total-price">
+          <span class="summary-label">Total Price:</span>
+          <span id="totalPrice" class="summary-value">$0.00</span>
+        </div>
+      </div>
+
+      <div class="order-actions">
+        <button id="backToIndex" class="back-button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Continue Shopping
+        </button>
+        <button class="checkout-button">
+          Proceed to Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.order-page {
+  display: none;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+.order-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.order-header {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+.order-title {
+  margin: 0 0 8px 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.order-subtitle {
+  opacity: 0.9;
+  font-size: 1.1rem;
+}
+
+.order-items-list {
+  padding: 30px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.order-item:hover {
+  background-color: #f8fafc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.order-item img {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-right: 16px;
+  border: 2px solid #e5e7eb;
+}
+
+.order-item span {
+  margin-right: 16px;
+  font-size: 1rem;
+  color: #374151;
+}
+
+.order-item span:nth-child(2) {
+  font-weight: 600;
+  color: #1f2937;
+  flex: 1;
+}
+
+.order-item span:nth-child(3) {
+  background: #4f46e5;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+}
+
+.order-item span:nth-child(4) {
+  font-weight: 700;
+  color: #059669;
+}
+
+.order-summary {
+  padding: 30px;
+  background: #f8fafc;
+  border-top: 1px solid #e5e7eb;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+}
+
+.summary-row.total-price {
+  border-top: 2px solid #e5e7eb;
+  padding-top: 16px;
+  margin-top: 16px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.summary-label {
+  color: #6b7280;
+}
+
+.summary-value {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.total-price .summary-value {
+  color: #059669;
+  font-size: 1.5rem;
+}
+
+.order-actions {
+  display: flex;
+  gap: 16px;
+  padding: 30px;
+  background: white;
+  border-top: 1px solid #e5e7eb;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  background: white;
+  color: #6b7280;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  justify-content: center;
+}
+
+.back-button:hover {
+  background: #f8fafc;
+  border-color: #4f46e5;
+  color: #4f46e5;
+  transform: translateY(-2px);
+}
+
+.checkout-button {
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 2;
+}
+
+.checkout-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+}
+
+/* Scrollbar styling */
+.order-items-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.order-items-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.order-items-list::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.order-items-list::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .order-page {
+    padding: 10px;
+  }
+  
+  .order-header {
+    padding: 20px;
+  }
+  
+  .order-title {
+    font-size: 1.5rem;
+  }
+  
+  .order-items-list {
+    padding: 20px;
+  }
+  
+  .order-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .order-item img {
+    margin-right: 0;
+  }
+  
+  .order-actions {
+    flex-direction: column;
+  }
+  
+  .back-button, .checkout-button {
+    flex: none;
+  }
+}
+
+/* Animation for when order page appears */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.order-container {
+  animation: slideIn 0.5s ease-out;
+}
