@@ -210,3 +210,35 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCartDropdown();
   filterProducts(); // Initialize filters on page load
 });
+
+// Hamburger Menu Toggle
+const menuIcon = document.querySelector('.menu');
+const sideMenu = document.querySelector('.side-menu');
+const closeBtn = document.querySelector('.close-btn');
+const overlay = document.querySelector('.overlay');
+
+// Toggle side menu
+menuIcon.addEventListener('click', () => {
+    sideMenu.classList.add('open');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+});
+
+// Close side menu
+closeBtn.addEventListener('click', () => {
+    sideMenu.classList.remove('open');
+    document.body.style.overflow = ''; // Restore scrolling
+});
+
+// Close menu when clicking outside
+overlay.addEventListener('click', () => {
+    sideMenu.classList.remove('open');
+    document.body.style.overflow = '';
+});
+
+// Close menu on escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sideMenu.classList.contains('open')) {
+        sideMenu.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+});
