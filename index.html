@@ -3,12 +3,10 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Hami MiniMarket</title>
-   <!-- <link rel="stylesheet" href="./style.css"> -->
-<!--font awesome-->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script src="main.js" defer></script> 
+   <title>Hami MiniMarket - Fresh Groceries</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
    <link rel="stylesheet" href="css.css">
+   <script src="data/products.js"></script>
 </head>
 
 <body>
@@ -42,11 +40,8 @@
       <span id="cartCount">0</span>
       <div class="cart-dropdown" id="cartDropdown">
         <p>Your cart is empty</p>
-        <!-- View Order button -->
-        <button id="viewOrderBtn" style="margin-top:10px; width:100%; padding:5px; cursor:pointer;">View Order</button>
-        <button id="confirmOrder" class="confirm-button" style="margin-top:10px; width:100%; padding:5px; cursor:pointer;"">
-    Confirm Order
-</button>
+        <button id="viewOrderBtn" class="cart-btn">View Order</button>
+        <button id="confirmOrder" class="cart-btn confirm-button">Confirm Order</button>
       </div>
     </div>
 
@@ -59,295 +54,183 @@
 
 <!-- ORDER PAGE SECTION -->
 <section id="orderSection">
-  
-  <div id="orderPage" style="display:none; padding:20px; max-width:800px; margin:0 auto;">
-    <h2>Your Order</h2>
-    <div id="orderList" style="margin-top:15px; border-top:1px solid #ccc; padding-top:10px;"></div>
+  <div id="orderPage" class="order-page">
+    <div class="order-container">
+      <div class="order-header">
+        <h2 class="order-title">Your Order Summary</h2>
+        <div class="order-subtitle">Review your items before proceeding</div>
+      </div>
 
-    <div style="margin-top:15px;">
-      <p>Total Items: <span id="totalItems">0</span></p>
-      <p>Total Price: $<span id="totalPrice">0</span></p>
+      <div id="orderList" class="order-items-list">
+        <!-- Order items will be dynamically inserted here -->
+      </div>
+
+      <div class="order-summary">
+        <div class="summary-row">
+          <span class="summary-label">Subtotal:</span>
+          <span id="subtotal" class="summary-value">$0.00</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Tax (10%):</span>
+          <span id="tax" class="summary-value">$0.00</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Discount:</span>
+          <span id="discount" class="summary-value">$0.00</span>
+        </div>
+        <div class="summary-row total-price">
+          <span class="summary-label">Total:</span>
+          <span id="totalPrice" class="summary-value">$0.00</span>
+        </div>
+      </div>
+
+      <div class="order-actions">
+        <button id="backToIndex" class="back-button">
+          <i class="fas fa-arrow-left"></i>
+          Continue Shopping
+        </button>
+        <button id="finalConfirmOrder" class="checkout-button">
+          Confirm Order
+        </button>
+      </div>
     </div>
-
-    <button id="backToIndex" style="margin-top:20px; padding:8px 15px; cursor:pointer; background:#4CAF50; color:white; border:none; border-radius:5px;">
-      Back
-    </button>
   </div>
 </section>
 
+<!-- ORDER SUCCESS MESSAGE -->
+<div id="orderSuccess" class="order-success" style="display: none;">
+  <div class="success-content">
+    <i class="fas fa-check-circle"></i>
+    <h2>Order Confirmed!</h2>
+    <p>Thank you for your purchase. Your order has been successfully placed.</p>
+    <button id="continueShopping" class="success-btn">Continue Shopping</button>
+  </div>
+</div>
 
-
+<!-- SIDE MENU -->
 <div class="side-menu">
-    <div class="side-header">
-      <h2>Menu</h2>
-      <i class="fas fa-times close-btn"></i>
-    </div>
-
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#products">Products</a></li>
-      <li><a href="#about">About Us</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-
-    <div class="mobile-search">
-      <input type="text" placeholder="Search products..." />
-      <button><i class="fas fa-search"></i></button>
-    </div>
+  <div class="side-header">
+    <h2>Menu</h2>
+    <i class="fas fa-times close-btn"></i>
   </div>
 
-  
-    
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 
-
-
-   <main>
- <section id="home" class="hero">
-  <div class="hero-overlay"></div>
-
-  <div class="hero-content">
-    <h1>
-      <span class="highlight">Hami MiniMarket</span>
-    </h1>
-    <p class="hero-subtitle">Fresh groceries, daily essentials, delivered with care. Shop smart, live better.</p>
-    <div class="hero-buttons">
-      <a href="#products" class="btn primary-btn">Shop Now</a>
-      <a href="#offers" class="btn primary-btn">View Offers</a>
-    </div>
+  <div class="mobile-search">
+    <input type="text" placeholder="Search products..." />
+    <button><i class="fas fa-search"></i></button>
   </div>
-</section>
+</div>
 
-
-<!-- PRODUCTS SECTIO -->
-<section id="products" class="products">
-  <div class="product-container">
-    <h2>Our Products</h2>
-
-    <!-- Filters -->
-    <div class="product-filters">
-      <input type="text" id="searchInput" placeholder="Search products...">
-      <select id="categoryFilter">
-        <option value="all">All Categories</option>
-        <option value="fruits">Fruits</option>
-        <option value="vegetables">Vegetables</option>
-      </select>
-      <input type="range" id="priceFilter" min="0" max="10" step="0.1" value="10">
-      <span id="priceValue">$10</span>
+<!-- MAIN CONTENT -->
+<main>
+  <!-- HERO SECTION -->
+  <section id="home" class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1><span class="highlight">Hami MiniMarket</span></h1>
+      <p class="hero-subtitle">Fresh groceries, daily essentials, delivered with care. Shop smart, live better.</p>
+      <div class="hero-buttons">
+        <a href="#products" class="btn primary-btn">Shop Now</a>
+        <a href="#products" class="btn secondary-btn">View Offers</a>
+      </div>
     </div>
+  </section>
 
-    <!-- Product Grid -->
-    <div class="product-grid" id="productGrid">
+  <!-- PRODUCTS SECTION -->
+  <section id="products" class="products">
+    <div class="product-container">
+      <h2>Our Products</h2>
 
-      <!-- VEGETABLES -->
-      <div class="product-card" data-category="vegetables" data-price="2.99">
-        <div class="product-image">
-          <img src="https://i.pinimg.com/736x/c6/22/6b/c6226ba1dd99290ad2a2d4a45189306c.jpg" alt="Beetroot">
-          <span class="badge new">New</span>
-        </div>
-        <h3>Beetroot</h3>
-        <p class="price">$2.99 /lb</p>
-        <button class="btn primary-btn add-to-cart">Add to Cart</button>
+      <!-- Filters -->
+      <div class="product-filters">
+        <input type="text" id="searchInput" placeholder="Search products...">
+        <select id="categoryFilter">
+          <option value="all">All Categories</option>
+          <option value="fruits">Fruits</option>
+          <option value="vegetables">Vegetables</option>
+        </select>
+        <input type="range" id="priceFilter" min="0" max="10" step="0.1" value="10">
+        <span id="priceValue">$10</span>
+        <button id="clearFilters" class="btn secondary-btn">Clear Filters</button>
       </div>
 
-      <div class="product-card" data-category="vegetables" data-price="1.99">
-        <div class="product-image">
-          <img src="https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?auto=format&fit=crop&w=500&q=60" alt="Carrots">
-        </div>
-        <h3>Carrots</h3>
-        <p class="price">$1.99 /lb</p>
-        <button class="btn primary-btn add-to-cart">Add to Cart</button>
+      <!-- Product Grid -->
+      <div class="product-grid" id="productGrid">
+        <!-- Products will be loaded dynamically from JSON -->
       </div>
 
-      <div class="product-card" data-category="vegetables" data-price="2.49">
-        <div class="product-image">
-          <img src="https://i.pinimg.com/736x/ab/9a/58/ab9a581ce53008cc1684303bea260315.jpg" alt="Cabbage">
-        </div>
-        <h3>Cabbage</h3>
-        <p class="price">$2.49 /lb</p>
-        <button class="btn primary-btn add-to-cart">Add to Cart</button>
+      <!-- No Results Message -->
+      <div id="noResultsMessage" class="no-results" style="display: none;">
+        <h3>No products found</h3>
+        <p>Try adjusting your search or filters</p>
       </div>
-
-      <div class="product-card" data-category="vegetables" data-price="2.79">
-        <div class="product-image">
-          <img src="https://i.pinimg.com/736x/27/9f/b4/279fb40f38964934f6565fabc995701d.jpg" alt="Lettuce">
-        </div>
-        <h3>Lettuce</h3>
-        <p class="price">$2.79 /head</p>
-        <button class="btn primary-btn add-to-cart">Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="vegetables" data-price="2.59">
-        <div class="product-image">
-          <img src="https://i.pinimg.com/736x/c2/ea/7b/c2ea7ba18d341af09ed794f8f2eecfe1.jpg" alt="Broccoli">
-        </div>
-        <h3>Broccoli</h3>
-        <p class="price">$2.59 /lb</p>
-        <button class="btn primary-btn add-to-cart">Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="vegetables" data-price="3.19">
-        <div class="product-image">
-          <img src="images/Spinach.jpg" alt="Spinach">
-        </div>
-        <h3>Spinach</h3>
-        <p class="price">$3.19 /lb</p>
-        <button class="btn primary-btn add-to-cart">Add to Cart</button>
-      </div>
-
-      <!-- FRUITS -->
-      <div class="product-card" data-category="fruits" data-price="1.49">
-        <div class="product-image">
-          <img src="https://images.pexels.com/photos/30972854/pexels-photo-30972854.jpeg" alt="Bananas">
-        </div>
-        <h3>Bananas</h3>
-        <p class="price">$1.49 /lb</p>
-        <button class="btn primary-btn add-to-cart">Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="fruits" data-price="3.99">
-        <div class="product-image">
-          <img src="https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?auto=format&fit=crop&w=500&q=60" alt="Mangoes">
-        </div>
-        <h3>Mangoes</h3>
-        <p class="price">$3.99 /dozen</p>
-        <button class="btn primary-btn add-to-cart">Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="fruits" data-price="3.49">
-        <div class="product-image">
-          <img src="https://i.pinimg.com/736x/7d/b8/1a/7db81ace72e00a157cc1aaf0952efa3c.jpg" alt="Fresh Fruits">
-        </div>
-        <h3>Mixed Fruits</h3>
-        <p class="price">$3.49 /lb</p>
-        <button class="btn primary-btn add-to-cart">Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="fruits" data-price="4.49">
-        <div class="product-image">
-          <img src="https://i.pinimg.com/736x/f1/41/3b/f1413beb9bf2f3ad5e749d23af5b3ba4.jpg" alt="Blueberries">
-        </div>
-        <h3>Blueberries</h3>
-        <p class="price">$4.49 /lb</p>
-        <button class="btn primary-btn add-to-cart">Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="fruits" data-price="2.99">
-        <div class="product-image">
-          <img src="https://i.pinimg.com/1200x/cd/4b/b7/cd4bb7f345b147e47c4581a486076d40.jpg" alt="Grapes">
-        </div>
-        <h3>Grapes</h3>
-        <p class="price">$2.99 /lb</p>
-        <button class="btn primary-btn add-to-cart">Add to Cart</button>
-      </div>
-
-      <div class="product-card" data-category="fruits" data-price="3.99">
-        <div class="product-image">
-          <img src="https://i.pinimg.com/736x/32/74/a4/3274a4c1f3ab1a0aadb3a7e91130947a.jpg" alt="Strawberries">
-        </div>
-        <h3>Strawberries</h3>
-        <p class="price">$3.99 /lb</p>
-        <button class="btn primary-btn add-to-cart">Add to Cart</button>
-      </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-
-
-
-
-
-
-
-
-
-<!-- ABOUT US SECTION -->
-<section id="about" class="about-us">
-  <!-- Top Heading -->
-  <h3 class="about-heading"><span>About Us</span></h3>
-
-  <div class="container about-container">
-
-    <!-- Left: Text -->
-    <div class="about-content">
-      <h2>Hami MiniMarket</h2>
-      <p>Fresh groceries, quality produce, and everyday essentials—all in one place. Serving our community since 1995, we make shopping simple and enjoyable.</p>
-      <p>Our products are carefully sourced from trusted suppliers to ensure freshness and excellence in every item.</p> 
-
-      <!-- Stats / Numbers -->
-      <div class="about-stats">
-        <div class="stat">
-          <h4>25+</h4>
-          <p>Years Serving Community</p>
+  <!-- ABOUT US SECTION -->
+  <section id="about" class="about-us">
+    <h3 class="about-heading"><span>About Us</span></h3>
+    <div class="container about-container">
+      <div class="about-content">
+        <h2>Hami MiniMarket</h2>
+        <p>Fresh groceries, quality produce, and everyday essentials—all in one place. Serving our community since 1995, we make shopping simple and enjoyable.</p>
+        <p>Our products are carefully sourced from trusted suppliers to ensure freshness and excellence in every item.</p> 
+        <div class="about-stats">
+          <div class="stat">
+            <h4>25+</h4>
+            <p>Years Serving Community</p>
+          </div>
+          <div class="stat">
+            <h4>1000+</h4>
+            <p>Products</p>
+          </div>
+          <div class="stat">
+            <h4>5000+</h4>
+            <p>Happy Customers</p>
+          </div>
         </div>
-        <div class="stat">
-          <h4>1000+</h4>
-          <p>Products</p>
-        </div>
-        <div class="stat">
-          <h4>5000+</h4>
-          <p>Happy Customers</p>
-        </div>
+        <a href="#products" class="btn primary-btn">Shop Now</a>
       </div>
-
-      <a href="#products" class="btn primary-btn">Shop Now</a>
+      <div class="about-image">
+        <img src="https://media.istockphoto.com/id/1428625605/photo/fresh-vegetables-selling-at-local-market-in-dhaka.webp?a=1&s=612x612&w=0&k=20&c=8WIVYD0TWYhS6xwHxeZQnAoZdTr4tTDzz7ELu7yxnhI=" alt="About Us">
+      </div>
     </div>
+  </section>
 
-    <!-- Right: Image -->
-    <div class="about-image">
-      <img src="https://media.istockphoto.com/id/1428625605/photo/fresh-vegetables-selling-at-local-market-in-dhaka.webp?a=1&s=612x612&w=0&k=20&c=8WIVYD0TWYhS6xwHxeZQnAoZdTr4tTDzz7ELu7yxnhI=" alt="About Us">
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="contact-us">
+    <h3 class="contact-heading"><span>Contact Us</span></h3>
+    <div class="container contact-container">
+      <div class="contact-content">
+        <h2>Hami MiniMarket</h2>
+        <p>We're here to help you with any questions or feedback. Reach out to us and we'll get back to you as soon as possible.</p>
+        <p>You can contact us via phone, email, or by sending a message through the form on the right.</p>
+      </div>
+      <div class="contact-form">
+        <form id="contactForm">
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <textarea placeholder="Your Message" rows="5" required></textarea>
+          <button type="submit" class="btn primary-btn">Send Message</button>
+        </form>
+      </div>
     </div>
+  </section>
+</main>
 
-  </div>
-</section>
-<section id="contact" class="contact-us">
-  <!-- Heading -->
-  <h3 class="contact-heading"><span>Contact Us</span></h3>
-
-  <div class="container contact-container">
-    
-    <!-- Left: Text -->
-    <div class="contact-content">
-      <h2>Hami MiniMarket</h2>
-      <p>We’re here to help you with any questions or feedback. Reach out to us and we’ll get back to you as soon as possible.</p>
-      <p>You can contact us via phone, email, or by sending a message through the form on the right.</p>
-    </div>
-
-    <!-- Right: Form -->
-    <div class="contact-form">
-      <form>
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea placeholder="Your Message" rows="5" required></textarea>
-        <button type="submit" class="btn primary-btn">Send Message</button>
-      </form>
-    </div>
-
-  </div>
-</section>
-
-
-
-
-
-          
-   </main> 
-  
-
-
-
-
-   <footer class="footer">
+<!-- FOOTER -->
+<footer class="footer">
   <div class="container footer-container">
-
-    <!-- About -->
     <div class="footer-column">
       <h3>About</h3>
       <p>Hami MiniMarket offers fresh groceries, quality produce, and everyday essentials. Serving our community since 1995.</p>
     </div>
-
-    <!-- Quick Links -->
     <div class="footer-column">
       <h3>Quick Links</h3>
       <ul>
@@ -355,61 +238,38 @@
         <li><a href="#products">Products</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="#faq">FAQ</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#blog">Blog</a></li>
       </ul>
     </div>
-
-    <!-- Policies / Extra Links -->
     <div class="footer-column">
       <h3>Policies</h3>
       <ul>
         <li><a href="#shipping">Shipping Info</a></li>
         <li><a href="#returns">Returns</a></li>
-        <li><a href="#payment">Payment Options</a></li>
         <li><a href="#privacy">Privacy Policy</a></li>
         <li><a href="#terms">Terms of Service</a></li>
-        <li><a href="#support">Customer Support</a></li>
       </ul>
     </div>
-
-    <!-- Contact -->
     <div class="footer-column">
       <h3>Contact</h3>
       <p>📍 123 Market Street, Mogadishu</p>
       <p>📞 +1 234 567 890</p>
       <p>✉ miinabbe@gmail.com</p>
     </div>
-
-    <!-- Social -->
     <div class="footer-column">
       <h3>Follow Us</h3>
       <div class="social-icons">
-        <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/facebook.png"/></a>
-        <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/twitter.png"/></a>
-        <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/instagram.png"/></a>
-        <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/linkedin.png"/></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
       </div>
     </div>
-
   </div>
-
-  <!-- Footer Bottom -->
   <div class="footer-bottom">
     <p>&copy; 2025 Hami MiniMarket. All rights reserved.</p>
   </div>
 </footer>
 
-
-
-
-
-<!-- ... all HTML content ... -->
-
-
-
-
-
-   
+<script src="main.js"></script>
 </body>
 </html>
