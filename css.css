@@ -1197,6 +1197,10 @@ header .container {
     width: 90vw;
     right: 5%;
   }
+  .cart-dropdown{
+    width: 40vh;
+    /* margin-left: 600px; */
+  }
 
   .footer-container {
     flex-direction: column;
